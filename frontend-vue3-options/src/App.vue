@@ -112,12 +112,12 @@ export default {
 .nav-link.router-link-active::before {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 20px;
   height: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 1px;
 }
 
