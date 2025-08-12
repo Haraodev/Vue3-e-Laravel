@@ -133,11 +133,6 @@ a {
   font-weight: 500;
 }
 
-a:hover {
-  color: var(--primary-hover);
-  text-decoration: underline;
-}
-
 /* Botões base */
 button {
   font-family: inherit;
