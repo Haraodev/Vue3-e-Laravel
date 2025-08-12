@@ -1,61 +1,330 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 🚀 Backend Laravel - API REST
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Backend da aplicação Vue3 + Laravel construído com **Laravel 10**, fornecendo uma API REST robusta e escalável.
 
-## About Laravel
+## 🚀 Início Rápido
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Pré-requisitos
+- **PHP** >= 8.1
+- **Composer** >= 2.0
+- **MySQL** >= 8.0 ou **PostgreSQL** >= 13.0
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Instalação e Configuração
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+# Instalar dependências PHP
+composer install
 
-## Learning Laravel
+# Copiar arquivo de configuração
+cp .env.example .env
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Gerar chave da aplicação
+php artisan key:generate
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Configurar banco de dados no .env
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=vue3_laravel_db
+# DB_USERNAME=seu_usuario
+# DB_PASSWORD=sua_senha
 
-## Laravel Sponsors
+# Executar migrações
+php artisan migrate
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# (Opcional) Executar seeders
+php artisan db:seed
 
-### Premium Partners
+# Iniciar servidor
+php artisan serve
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+O backend estará disponível em: **http://localhost:8000**
 
-## Contributing
+## 📡 Endpoints da API
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Posts
 
-## Code of Conduct
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/api/posts` | Listar todos os posts |
+| `POST` | `/api/posts` | Criar novo post |
+| `GET` | `/api/posts/{id}` | Buscar post específico |
+| `PUT` | `/api/posts/{id}` | Atualizar post |
+| `DELETE` | `/api/posts/{id}` | Excluir post |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Exemplos de Uso
 
-## Security Vulnerabilities
+#### Listar Posts
+```bash
+curl -X GET http://localhost:8000/api/posts
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Criar Post
+```bash
+curl -X POST http://localhost:8000/api/posts \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Meu Post",
+    "body": "Conteúdo do post"
+  }'
+```
 
-## License
+#### Atualizar Post
+```bash
+curl -X PUT http://localhost:8000/api/posts/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Post Atualizado",
+    "body": "Novo conteúdo"
+  }'
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Excluir Post
+```bash
+curl -X DELETE http://localhost:8000/api/posts/1
+```
+
+## 📁 Estrutura do Projeto
+
+```
+app/
+├── Http/Controllers/Api/
+│   └── PostController.php    # Controller da API
+├── Models/
+│   └── Post.php             # Modelo Post
+└── Providers/
+    └── AppServiceProvider.php
+
+database/
+├── migrations/
+│   └── 2025_08_07_193904_create_posts_table.php
+└── seeders/
+    └── DatabaseSeeder.php
+
+routes/
+└── api.php                  # Rotas da API
+```
+
+## 🗄️ Banco de Dados
+
+### Migração Posts
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->text('body');
+    $table->timestamps();
+});
+```
+
+### Modelo Post
+```php
+class Post extends Model
+{
+    protected $fillable = ['title', 'body'];
+}
+```
+
+## 🔧 Configuração
+
+### Arquivo .env
+```env
+APP_NAME="Vue3 + Laravel"
+APP_ENV=local
+APP_KEY=base64:sua_chave_aqui
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vue3_laravel_db
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+
+CORS_ALLOWED_ORIGINS=http://localhost:5173
+```
+
+### CORS Configuration
+```php
+// config/cors.php
+return [
+    'paths' => ['api/*'],
+    'allowed_methods' => ['*'],
+    'allowed_origins' => ['http://localhost:5173'],
+    'allowed_headers' => ['*'],
+    'exposed_headers' => [],
+    'max_age' => 0,
+    'supports_credentials' => false,
+];
+```
+
+## 🛠️ Comandos Artisan
+
+```bash
+# Criar novo controller
+php artisan make:controller Api/NovoController
+
+# Criar nova migração
+php artisan make:migration create_nova_tabela
+
+# Criar novo modelo
+php artisan make:model NovoModelo
+
+# Executar migrações
+php artisan migrate
+
+# Reverter migrações
+php artisan migrate:rollback
+
+# Ver rotas
+php artisan route:list
+
+# Limpar cache
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+
+# Tinker (console interativo)
+php artisan tinker
+```
+
+## 🔍 Debugging
+
+### Logs
+- Arquivo de logs: `storage/logs/laravel.log`
+- Debug mode: `APP_DEBUG=true` no `.env`
+
+### Tinker
+```bash
+php artisan tinker
+
+# Exemplo de uso
+>>> Post::all();
+>>> Post::create(['title' => 'Teste', 'body' => 'Conteúdo']);
+```
+
+### Validação de Dados
+```php
+// PostController.php
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'body' => 'required|string'
+    ]);
+    
+    return Post::create($validated);
+}
+```
+
+## 🚨 Solução de Problemas
+
+### Erro de CORS
+Verifique se o CORS está configurado corretamente em `config/cors.php`.
+
+### Erro de Conexão com Banco
+```bash
+# Testar conexão
+php artisan tinker
+>>> DB::connection()->getPdo();
+
+# Verificar configurações
+php artisan config:cache
+```
+
+### Erro de Permissões
+```bash
+# Dar permissões para storage
+chmod -R 775 storage bootstrap/cache
+```
+
+### Porta Já em Uso
+```bash
+php artisan serve --port=8001
+```
+
+## 📊 Respostas da API
+
+### Sucesso
+```json
+{
+  "id": 1,
+  "title": "Meu Post",
+  "body": "Conteúdo do post",
+  "created_at": "2025-01-15T10:30:00.000000Z",
+  "updated_at": "2025-01-15T10:30:00.000000Z"
+}
+```
+
+### Erro
+```json
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "title": ["The title field is required."]
+  }
+}
+```
+
+## 🔒 Segurança
+
+### Validação
+- Validação de entrada em todos os endpoints
+- Sanitização de dados
+- Proteção contra SQL injection
+
+### CORS
+- Configuração específica para origens permitidas
+- Headers de segurança configurados
+
+## 📚 Recursos Adicionais
+
+- [Documentação Laravel](https://laravel.com/docs)
+- [Eloquent ORM](https://laravel.com/docs/eloquent)
+- [API Resources](https://laravel.com/docs/api-resources)
+- [Validation](https://laravel.com/docs/validation)
+
+## 🧪 Testes
+
+```bash
+# Executar testes
+php artisan test
+
+# Criar teste
+php artisan make:test PostTest
+```
+
+### Exemplo de Teste
+```php
+public function test_can_create_post()
+{
+    $response = $this->postJson('/api/posts', [
+        'title' => 'Test Post',
+        'body' => 'Test content'
+    ]);
+
+    $response->assertStatus(201)
+             ->assertJsonStructure(['id', 'title', 'body']);
+}
+```
+
+## 🚀 Deploy
+
+### Produção
+```bash
+# Otimizar para produção
+composer install --optimize-autoloader --no-dev
+
+# Cache de configurações
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Configurar APP_ENV=production no .env
+```
+
+---
+
+**Desenvolvido com ❤️ usando Laravel**
