@@ -28,9 +28,6 @@
             Ver Posts
             <span class="btn-icon">→</span>
           </router-link>
-          <button class="btn btn-secondary btn-lg">
-            Saiba Mais
-          </button>
         </div>
       </div>
       <div class="hero-visual">
